@@ -1,22 +1,27 @@
-const colorPick = (e) => {
-  const x = e.clientX;
-  const y = e.clientY;
-
-  console.log(x, y);
-
-  if (x % 2 === 0) {
-    if (y % 2 === 0) {
-      document.body.style.backgroundColor = "red";
+// Get color function
+const getColor = (e) => {
+  if (e.clientX % 2 === 0) {
+    if (e.clientY % 2 === 0) {
+      return "red";
     } else {
-      document.body.style.backgroundColor = "yellow";
+      return "yellow";
     }
   } else {
-    if (y % 2 === 0) {
-      document.body.style.backgroundColor = "green";
+    if (e.clientY % 2 === 0) {
+      return "green";
     } else {
-      document.body.style.backgroundColor = "blue";
+      return "blue";
     }
   }
 };
 
-document.body.addEventListener(`click`, colorPick);
+// Set color function
+const setColor = (e) => {
+  console.log(e.clientX, e.clientY);
+
+  const color = getColor(e);
+  document.body.style.backgroundColor = color;
+};
+
+// Listener
+document.body.addEventListener(`click`, setColor);
